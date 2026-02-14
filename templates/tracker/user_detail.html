@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="h4">Профиль: {{ profile_user.username }}</h1>
+  <p>Email: {{ profile_user.email|default:'не указан' }}</p>
+
+  <div class="mb-3">
+    <a class="btn btn-outline-primary" href="{% url 'user-update' profile_user.pk %}">Редактировать профиль</a>
+    <a class="btn btn-outline-danger" href="{% url 'user-delete' profile_user.pk %}">Удалить профиль</a>
+  </div>
+
+  <h2 class="h5">Задачи пользователя</h2>
+  <ul class="list-group">
+    {% for task in profile_user.tasks.all %}
+      <li class="list-group-item">{{ task.title }} — {{ task.get_status_display }}</li>
+    {% empty %}
+      <li class="list-group-item">Задач нет.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

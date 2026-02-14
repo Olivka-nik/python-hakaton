@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="h4">Удаление пользователя</h1>
+  <p>Удалить пользователя {{ object.username }}?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Удалить</button>
+    <a class="btn btn-secondary" href="{% url 'home' %}">Отмена</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="h4">Удаление задачи</h1>
+  <p>Удалить задачу "{{ object.title }}"?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Удалить</button>
+    <a class="btn btn-secondary" href="{% url 'task-list' %}">Отмена</a>
+  </form>
+{% endblock %}
